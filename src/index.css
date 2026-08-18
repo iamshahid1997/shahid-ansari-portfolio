@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Warm dark "desk" palette */
+    --background: 30 8% 11%;          /* #1f1d1a */
+    --background-2: 28 10% 15%;       /* slightly lighter */
+    --foreground: 40 30% 94%;         /* off-white #f5f1ea */
+    --foreground-muted: 35 12% 65%;
+
+    --card: 28 10% 16%;
+    --card-foreground: 40 30% 94%;
+
+    --popover: 28 10% 16%;
+    --popover-foreground: 40 30% 94%;
+
+    /* Warm amber accent */
+    --primary: 24 75% 64%;            /* #e8a87c */
+    --primary-foreground: 30 12% 12%;
+
+    --secondary: 28 8% 22%;
+    --secondary-foreground: 40 30% 94%;
+
+    --muted: 28 8% 20%;
+    --muted-foreground: 35 12% 65%;
+
+    --accent: 24 75% 64%;
+    --accent-foreground: 30 12% 12%;
+
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 40 30% 94%;
+
+    --border: 30 8% 22%;
+    --input: 30 8% 22%;
+    --ring: 24 75% 64%;
+
+    /* Terminal-window tokens */
+    --term-bg: 28 12% 9%;
+    --term-border: 30 8% 22%;
+    --term-prompt: 140 60% 55%;
+    --term-text: 40 30% 90%;
+
+    /* Sticky-note yellow */
+    --sticky: 48 90% 78%;
+    --sticky-foreground: 30 30% 18%;
+
+    /* Cork board */
+    --cork: 28 30% 32%;
+
+    /* macOS-style accents */
+    --mac-blue: 212 100% 52%;
+    --mac-window: 30 8% 14%;
+    --mac-sidebar: 28 8% 12%;
+    --mac-divider: 30 6% 22%;
+
+    /* Git-log palette */
+    --git-green: 140 60% 55%;
+    --git-yellow: 45 90% 60%;
+    --git-cyan: 190 70% 60%;
+    --git-magenta: 320 70% 65%;
+    --git-red: 0 70% 60%;
+
+    /* Vinyl */
+    --vinyl: 30 5% 6%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    /* Subtle paper grain */
+    background-image:
+      radial-gradient(hsl(var(--foreground) / 0.025) 1px, transparent 1px),
+      radial-gradient(hsl(var(--primary) / 0.04) 1px, transparent 1px);
+    background-size: 24px 24px, 64px 64px;
+    background-position: 0 0, 12px 12px;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.4);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  .font-hand {
+    font-family: 'Caveat', cursive;
+  }
+  .text-glow {
+    text-shadow: 0 0 24px hsl(var(--primary) / 0.6);
+  }
+  .cork-bg {
+    background-color: hsl(var(--cork));
+    background-image:
+      radial-gradient(hsl(0 0% 0% / 0.18) 1px, transparent 1px),
+      radial-gradient(hsl(0 0% 0% / 0.1) 1px, transparent 1px);
+    background-size: 6px 6px, 14px 14px;
+    background-position: 0 0, 3px 3px;
+  }
+  .shadow-soft {
+    box-shadow: 0 10px 30px -8px hsl(0 0% 0% / 0.5);
+  }
+  .shadow-paper {
+    box-shadow:
+      0 1px 0 hsl(0 0% 100% / 0.04) inset,
+      0 12px 28px -12px hsl(0 0% 0% / 0.6),
+      0 4px 8px -4px hsl(0 0% 0% / 0.4);
+  }
+  .mac-window {
+    background: hsl(var(--mac-window));
+    border: 1px solid hsl(var(--mac-divider));
+    border-radius: 12px;
+    box-shadow:
+      0 1px 0 hsl(0 0% 100% / 0.06) inset,
+      0 30px 60px -20px hsl(0 0% 0% / 0.7),
+      0 12px 24px -12px hsl(0 0% 0% / 0.5);
+  }
+  .perf-divider {
+    background-image: linear-gradient(
+      to right,
+      hsl(var(--mac-divider)) 50%,
+      transparent 50%
+    );
+    background-size: 12px 1px;
+    background-repeat: repeat-x;
+  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
